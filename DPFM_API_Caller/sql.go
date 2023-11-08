@@ -22,21 +22,13 @@ func (c *DPFMAPICaller) readSqlProcess(
 	var postalCodeAddress *[]dpfm_api_output_formatter.PostalCodeAddress
 	for _, fn := range accepter {
 		switch fn {
-		case "General":
+		case "PostalCode":
 			func() {
 				postalCode = c.PostalCode(mtx, input, output, errs, log)
 			}()
-		case "Generals":
-			func() {
-				postalCodes = c.PostalCodes(mtx, input, output, errs, log)
-			}()
-		case "GeneralsByBusinessPartners":
+		case "PostalCodeAddress":
 			func() {
 				postalCodeAddress = c.PostalCodeAddress(mtx, input, output, errs, log)
-			}()
-		case "GeneralsByPlants":
-			func() {
-				postalCodeAddresses = c.PostalCodeAddresses(mtx, input, output, errs, log)
 			}()
 		}
 	}
